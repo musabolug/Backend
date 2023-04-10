@@ -316,7 +316,6 @@ header.masthead .post-heading .meta a {
   position: relative;
   margin-bottom: 0;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid #dee2e6;
 }
 
 .floating-label-form-group input,
@@ -402,6 +401,9 @@ footer .copyright {
   color: #fff;
   background-color: #00657b !important;
   border-color: #00657b !important;
+}
+.delete:hover{
+color: darkred;
 }
 
 .btn-lg {
