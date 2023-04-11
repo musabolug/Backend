@@ -27,5 +27,5 @@ exports.getEditPage =  async (req, res) => {
   }
 
   exports.get404Page =  (req, res) => {
-    res.send(404).send("404 not found");
+    res.send("404 not found");
   }
