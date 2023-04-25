@@ -22,6 +22,10 @@ const CourseShema = new Schema({
   category:{
     type:mongoose.Schema.Types.ObjectId,
     ref:"Category"
+  },
+  user:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"User"
   }
 });
 
