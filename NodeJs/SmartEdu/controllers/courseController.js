@@ -9,8 +9,11 @@ exports.createCourse = async (req, res) => {
     user: req.session.userID,
   });
   try {
+
+    req.flash("success",`${course.name} crated succesfully`)
     res.status(201).redirect("/courses");
   } catch (error) {
+    req.flash("error",`Something went wrong!`)
     res.status(400).json({
       status: "fail",
       error,
@@ -87,6 +90,7 @@ exports.releaseCourse = async (req, res) => {
     });
   }
 };
+
 exports.getCourse = async (req, res) => {
   try {
     const user = await User.findById(req.session.userID);
@@ -100,6 +104,33 @@ exports.getCourse = async (req, res) => {
       user,
       page_name: "courses",
     });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      err,
+    });
+  }
+};
+exports.deleteCourse = async (req, res) => {
+  try {
+    const course = await Course.findOneAndRemove({slug: req.params.slug})
+    req.flash("success",`${course.name} deleted successfully`)
+    res.status(200).redirect("/users/dashboard");
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      err,
+    });
+  }
+};
+exports.updateCourse = async (req, res) => {
+  try {
+    const course = await Course.findOne({slug:req.params.slug})
+    course.name = req.body.name
+    course.description = req.body.description
+    course.category = req.body.category
+    course.save()
+    res.status(200).redirect("/users/dashboard");
   } catch (err) {
     res.status(400).json({
       status: "fail",
