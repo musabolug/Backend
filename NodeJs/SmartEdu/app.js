@@ -12,7 +12,7 @@ const userRoute = require("./routes/userRoute");
 const MongoStore = require("connect-mongo");
 //*Connect DB
 mongoose
-  .connect("mongodb://127.0.0.1:27017/smartedu-db", {
+  .connect("mongodb+srv://user:VDd7fKWXjGm6X61n@cluster0.pidqpmd.mongodb.net/test", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -59,7 +59,7 @@ app.use("/categories", categoryRoute);
 app.use("/users", userRoute);
 app.use("/", pageRoute);
 
-const port = 3001;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`App started on port ${port}`);
 });
